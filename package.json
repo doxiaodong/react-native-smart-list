@@ -1,0 +1,67 @@
+{
+  "name": "react-native-smart-list",
+  "version": "1.0.0-pre.1",
+  "typings": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "scripts": {
+    "tsc": "tsc -d",
+    "lint": "tslint \"{src,__tests__}/**/*.{tsx,ts}\"",
+    "clean": "rm -rf lib",
+    "ci": "npm run clean && npm run lint && npm run tsc && npm run test",
+    "test": "jest --coverage --no-cache",
+    "watch": "tsc -w -d",
+    "pub": "npm publish --registry http://registry.npmjs.org",
+    "prepub": "npm run ci"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0-alpha.12",
+    "react-native": "^0.45.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^19.2.4",
+    "@types/react": "^15.0.29",
+    "@types/react-native": "^0.44.10",
+    "@types/react-test-renderer": "^15.5.0",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "react": "16.0.0-alpha.12",
+    "react-dom": "^16.0.0-alpha.12",
+    "react-native": "0.45.1",
+    "react-test-renderer": "^16.0.0-alpha.12",
+    "ts-jest": "^20.0.6",
+    "tslint": "^5.4.3",
+    "tslint-microsoft-contrib": "^5.0.0",
+    "tslint-react": "^3.0.0",
+    "typescript": "^2.3.4"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "skipBabel": true
+      }
+    },
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/lib/$1"
+    },
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!react-native)"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/"
+    ],
+    "mapCoverage": true,
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|jsx)$",
+    "coverageDirectory": "coverage",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ]
+  }
+}

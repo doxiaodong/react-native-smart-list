@@ -1,0 +1,3 @@
+rootProject.name = 'SmartList'
+
+include ':app'
