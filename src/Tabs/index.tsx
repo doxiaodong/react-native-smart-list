@@ -5,6 +5,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import store from '../store'
 
 import defaultStyle from './style'
 
@@ -12,6 +13,21 @@ export default class Tabs extends Component<{}, {}> {
 
   state = {
     currentName: null
+  }
+
+  componentDidMount() {
+    store.$watch('currentName', (next) => {
+      if (next === this.state.currentName) {
+        return
+      }
+      this.setState({
+        currentName: next
+      })
+    })
+  }
+
+  componentWillUnmount() {
+    store.$unwatch('currentName')
   }
 
   isActive(name, label) {
@@ -28,9 +44,7 @@ export default class Tabs extends Component<{}, {}> {
     if (this.state.currentName !== realName) {
       nextName = realName
     }
-    this.setState({
-      currentName: nextName
-    })
+    store.setName(nextName)
   }
 
   render() {
@@ -40,7 +54,7 @@ export default class Tabs extends Component<{}, {}> {
         <View style={defaultStyle.tabs}>
           {
             React.Children.map(children, (item, index) => {
-              const { name, label } = item['props']
+              const { name, label, selectedLabel } = item['props']
               const isFirst = index === 0
               const isActive = this.isActive(name, label)
               return (
@@ -50,7 +64,9 @@ export default class Tabs extends Component<{}, {}> {
                     onPress={() => this.handleTabClick(item)}
                   >
                     <View style={{ flexDirection: 'row' }}>
-                      <Text style={[defaultStyle.text, isActive && defaultStyle.activeText]}>{label}</Text>
+                      <Text style={[defaultStyle.text, isActive && defaultStyle.activeText]}>
+                        {selectedLabel || label}
+                      </Text>
                       <Icon
                         name={isActive ? 'angle-up' : 'angle-down'}
                         style={isActive && defaultStyle.activeIcon}
@@ -66,11 +82,12 @@ export default class Tabs extends Component<{}, {}> {
         <View>
           {React.Children.map(children, (item) => {
             const { name, label } = item['props']
-            return (
-              <View>
-                {this.isActive(name, label) && item}
+            return this.isActive(name, label) &&
+              <View style={defaultStyle.tabContentContainer} onTouchEnd={() => this.handleTabClick(item)}>
+                <View onTouchEnd={(e) => { e.stopPropagation() }} style={defaultStyle.tabContent}>
+                  {item}
+                </View>
               </View>
-            )
           })}
         </View>
       </View>

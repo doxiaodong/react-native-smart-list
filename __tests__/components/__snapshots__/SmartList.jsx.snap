@@ -2,7 +2,13 @@
 
 exports[`SmartList Component Snapshot 1`] = `
 <View>
-  <View>
+  <View
+    style={
+      Object {
+        "zIndex": 1,
+      }
+    }
+  >
     <View
       style={
         Array [
@@ -293,14 +299,16 @@ exports[`SmartList Component Snapshot 1`] = `
           </View>
         </View>
       </View>
-      <View>
-        <View />
-        <View />
-        <View />
-      </View>
+      <View />
     </View>
   </View>
-  <View>
+  <View
+    style={
+      Object {
+        "zIndex": 0,
+      }
+    }
+  >
     <View>
       <Text
         accessible={true}

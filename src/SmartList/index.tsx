@@ -8,10 +8,10 @@ export default class SmartList extends Component<{
     const { tabs, children } = this.props
     return (
       <View>
-        <View>
+        <View style={{ zIndex: 1 }}>
           {tabs}
         </View>
-        <View>
+        <View style={{ zIndex: 0 }}>
           {children}
         </View>
       </View>
