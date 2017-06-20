@@ -7,6 +7,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome'
 import store from '../store'
 
+import globalStyle from '../style'
 import defaultStyle from './style'
 
 export default class Tabs extends Component<{}, {}> {
@@ -49,27 +50,28 @@ export default class Tabs extends Component<{}, {}> {
 
   render() {
     const { children } = this.props
+    const style = { ...defaultStyle, ...globalStyle.tabs }
     return (
-      <View style={[defaultStyle.container]}>
-        <View style={defaultStyle.tabs}>
+      <View style={[style.container]}>
+        <View style={style.tabs}>
           {
             React.Children.map(children, (item, index) => {
               const { name, label, selectedLabel } = item['props']
               const isFirst = index === 0
               const isActive = this.isActive(name, label)
               return (
-                <View key={index} style={[defaultStyle.tab, !isFirst && defaultStyle.tabIsNotFirst]}>
+                <View key={index} style={[style.tab, !isFirst && style.tabIsNotFirst]}>
                   <TouchableOpacity
-                    style={defaultStyle.tabContainer}
+                    style={style.tabContainer}
                     onPress={() => this.handleTabClick(item)}
                   >
                     <View style={{ flexDirection: 'row' }}>
-                      <Text style={[defaultStyle.text, isActive && defaultStyle.activeText]}>
+                      <Text style={[style.text, isActive && style.activeText]}>
                         {selectedLabel || label}
                       </Text>
                       <Icon
                         name={isActive ? 'angle-up' : 'angle-down'}
-                        style={isActive && defaultStyle.activeIcon}
+                        style={isActive && style.activeIcon}
                         size={16}
                       />
                     </View>
@@ -83,8 +85,8 @@ export default class Tabs extends Component<{}, {}> {
           {React.Children.map(children, (item) => {
             const { name, label } = item['props']
             return this.isActive(name, label) &&
-              <View style={defaultStyle.tabContentContainer} onTouchEnd={() => this.handleTabClick(item)}>
-                <View onTouchEnd={(e) => { e.stopPropagation() }} style={defaultStyle.tabContent}>
+              <View style={style.tabContentContainer} onTouchEnd={() => this.handleTabClick(item)}>
+                <View onTouchEnd={(e) => { e.stopPropagation() }} style={style.tabContent}>
                   {item}
                 </View>
               </View>

@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import SmartList, { Tabs, Pane, store } from './sm'
+import SmartList, { Tabs, Pane, store, configStyle } from 'react-native-smart-list'
+// import SmartList, { Tabs, Pane, store, configStyle } from './sm'
 import { dataFilters, initFilters } from './data'
+import style from './style'
+
+configStyle(style)
 
 export default class App extends Component {
 
