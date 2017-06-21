@@ -70,9 +70,8 @@ export default class Tabs extends Component<{
     return label
   }
 
-  tabsLayout = () => {
+  tabsLayout = (style) => {
     const { children, maxLabelLength } = this.props
-    const style = { ...defaultStyle, ...globalStyle.tabs }
     return (
       <View style={style.tabs}>
         {
@@ -113,12 +112,12 @@ export default class Tabs extends Component<{
     }
     return (
       <View style={style.container}>
-        {this.tabsLayout()}
+        {this.tabsLayout(style)}
         <View onLayout={this.onLayout}>
           <Modal transparent={true} onRequestClose={() => null} visible={this.isSomeoneActive()}>
             <View style={modalViewStyle}>
               <View>
-                {this.tabsLayout()}
+                {this.tabsLayout(style)}
               </View>
               <View>
                 {React.Children.map(children, (item) => {
