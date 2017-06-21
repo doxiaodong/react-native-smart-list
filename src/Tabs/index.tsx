@@ -120,15 +120,17 @@ export default class Tabs extends Component<{
               <View>
                 {this.tabsLayout()}
               </View>
-              {React.Children.map(children, (item) => {
-                const { name, label } = item['props']
-                return this.isActive(name, label) &&
-                  <View style={style.tabContentContainer} onTouchEnd={() => this.handleTabClick(item)}>
-                    <View onTouchEnd={(e) => { e.stopPropagation() }} style={style.tabContent}>
-                      {item}
+              <View>
+                {React.Children.map(children, (item) => {
+                  const { name, label } = item['props']
+                  return this.isActive(name, label) &&
+                    <View style={style.tabContentContainer} onTouchEnd={() => this.handleTabClick(item)}>
+                      <View onTouchEnd={(e) => { e.stopPropagation() }} style={style.tabContent}>
+                        {item}
+                      </View>
                     </View>
-                  </View>
-              })}
+                })}
+              </View>
             </View>
           </Modal>
         </View>

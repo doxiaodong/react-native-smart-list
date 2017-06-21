@@ -596,6 +596,7 @@ exports[`SmartList Component Snapshot 1`] = `
                 </View>
               </View>
             </View>
+            <View />
           </View>
         </Modal>
       </View>
