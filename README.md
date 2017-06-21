@@ -5,3 +5,7 @@
 ### Usage
 
 * See example folder
+
+### Why Modal
+
+* https://github.com/facebook/react-native/issues/6802

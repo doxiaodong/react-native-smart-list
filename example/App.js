@@ -48,7 +48,7 @@ export default class App extends Component {
         </View>
         <SmartList
           tabs={
-            <Tabs>
+            <Tabs maxLabelLength={2}>
               {dataFilters.map((t) => {
                 const { label, values } = t
                 const selected = this.state.filters[t.label] || {}
