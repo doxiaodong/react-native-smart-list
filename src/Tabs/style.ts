@@ -44,6 +44,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   tabContent: {
+    maxHeight: 250, // 设置每个下拉列表的最大高度
     backgroundColor: 'white'
   }
 })

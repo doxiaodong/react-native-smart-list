@@ -2,22 +2,25 @@ import React, { Component } from 'react'
 import {
   View,
   Text,
-  Modal,
+  Platform,
   TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import store from '../store'
+import AndroidPaneContainer from './AndroidPaneContainer'
+import IOSPaneContainer from './IOSPaneContainer'
 
 import globalStyle from '../style'
 import defaultStyle from './style'
+
+const isIOS = Platform.OS === 'ios'
 
 export default class Tabs extends Component<{
   maxLabelLength?: number
 }, {}> {
 
   state = {
-    currentName: null,
-    layout: { y: 0 }
+    currentName: null
   }
 
   componentDidMount() {
@@ -54,10 +57,6 @@ export default class Tabs extends Component<{
       nextName = realName
     }
     store.setName(nextName)
-  }
-
-  onLayout = (e) => {
-    this.setState({ layout: e.nativeEvent.layout })
   }
 
   shadowLabel(label, max) {
@@ -107,32 +106,34 @@ export default class Tabs extends Component<{
   render() {
     const { children } = this.props
     const style = { ...defaultStyle, ...globalStyle.tabs }
-    const modalViewStyle = {
-      top: this.state.layout.y
-    }
+
+    const containerChildren = React.Children.map(children, (item) => {
+      const { name, label } = item['props']
+      return this.isActive(name, label) && (
+        <View style={style.tabContentContainer} onTouchEnd={() => this.handleTabClick(item)}>
+          <View
+            onTouchEnd={(e) => { e.stopPropagation() }}
+            style={style.tabContent}
+          >
+            {item}
+          </View>
+        </View>
+      )
+    })
+
     return (
       <View style={style.container}>
         {this.tabsLayout(style)}
-        <View onLayout={this.onLayout}>
-          <Modal transparent={true} onRequestClose={() => null} visible={this.isSomeoneActive()}>
-            <View style={modalViewStyle}>
-              <View>
-                {this.tabsLayout(style)}
-              </View>
-              <View>
-                {React.Children.map(children, (item) => {
-                  const { name, label } = item['props']
-                  return this.isActive(name, label) &&
-                    <View style={style.tabContentContainer} onTouchEnd={() => this.handleTabClick(item)}>
-                      <View onTouchEnd={(e) => { e.stopPropagation() }} style={style.tabContent}>
-                        {item}
-                      </View>
-                    </View>
-                })}
-              </View>
-            </View>
-          </Modal>
-        </View>
+        {
+          isIOS ?
+            <IOSPaneContainer>{containerChildren}</IOSPaneContainer> :
+            <AndroidPaneContainer
+              visible={this.isSomeoneActive()}
+              tabsLayout={this.tabsLayout(style)}
+            >
+              {containerChildren}
+            </AndroidPaneContainer>
+        }
       </View>
     )
   }
