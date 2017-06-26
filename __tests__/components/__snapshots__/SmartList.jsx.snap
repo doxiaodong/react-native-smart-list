@@ -16,7 +16,6 @@ exports[`SmartList Component Snapshot 1`] = `
         style={
           Object {
             "backgroundColor": "#eee",
-            "borderBottomWidth": 1,
             "borderColor": "#ccc",
             "borderTopWidth": 1,
             "flexDirection": "row",
@@ -35,6 +34,7 @@ exports[`SmartList Component Snapshot 1`] = `
                 "flex": 1,
                 "justifyContent": "center",
               },
+              Object {},
               false,
             ]
           }
@@ -123,6 +123,7 @@ exports[`SmartList Component Snapshot 1`] = `
                 "flex": 1,
                 "justifyContent": "center",
               },
+              Object {},
               Object {
                 "borderLeftWidth": 1,
               },
@@ -213,6 +214,7 @@ exports[`SmartList Component Snapshot 1`] = `
                 "flex": 1,
                 "justifyContent": "center",
               },
+              Object {},
               Object {
                 "borderLeftWidth": 1,
               },
