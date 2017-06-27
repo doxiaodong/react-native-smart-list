@@ -83,18 +83,20 @@ export default class Tabs extends Component<{
             const isFirst = index === 0
             const isActive = this.isActive(name, label)
             return (
-              <View key={index} style={[style.tab, isActive && style.activeTab, !isFirst && style.tabIsNotFirst]}>
-                <TouchableOpacity
-                  style={style.tabContainer}
-                  onPress={() => this.handleTabClick(item)}
-                >
-                  <View style={{ flexDirection: 'row' }}>
-                    <Text style={[style.text, isActive && style.activeText]}>
-                      {this.shadowLabel(selectedLabel || label, maxLabelLength)}
-                    </Text>
-                    {isActive ? labelIconActive : labelIcon}
-                  </View>
-                </TouchableOpacity>
+              <View key={index} style={[style.tab, isActive && style.activeTab]}>
+                <View style={!isFirst && style.tabIsNotFirst}>
+                  <TouchableOpacity
+                    style={style.tabContainer}
+                    onPress={() => this.handleTabClick(item)}
+                  >
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={[style.text, isActive && style.activeText]}>
+                        {this.shadowLabel(selectedLabel || label, maxLabelLength)}
+                      </Text>
+                      {isActive ? labelIconActive : labelIcon}
+                    </View>
+                  </TouchableOpacity>
+                </View>
               </View>
             )
           })
