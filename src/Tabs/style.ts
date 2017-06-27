@@ -14,8 +14,7 @@ export default StyleSheet.create({
   tab: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#ccc'
+    alignItems: 'center'
   },
   activeTab: {},
   tabContainer: {
@@ -25,6 +24,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   tabIsNotFirst: {
+    borderColor: '#ccc',
     borderLeftWidth: 1
   },
   text: {

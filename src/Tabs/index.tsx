@@ -84,7 +84,7 @@ export default class Tabs extends Component<{
             const isActive = this.isActive(name, label)
             return (
               <View key={index} style={[style.tab, isActive && style.activeTab]}>
-                <View style={!isFirst && style.tabIsNotFirst}>
+                <View style={[{ width: '100%' }, !isFirst && style.tabIsNotFirst]}>
                   <TouchableOpacity
                     style={style.tabContainer}
                     onPress={() => this.handleTabClick(item)}
