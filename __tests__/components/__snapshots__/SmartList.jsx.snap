@@ -89,28 +89,6 @@ exports[`SmartList Component Snapshot 1`] = `
               >
                 1
               </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={false}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 16,
-                    },
-                    false,
-                    Object {
-                      "fontFamily": "FontAwesome",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                  ]
-                }
-              >
-                
-              </Text>
             </View>
           </View>
         </View>
@@ -180,28 +158,6 @@ exports[`SmartList Component Snapshot 1`] = `
               >
                 2
               </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={false}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 16,
-                    },
-                    false,
-                    Object {
-                      "fontFamily": "FontAwesome",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                  ]
-                }
-              >
-                
-              </Text>
             </View>
           </View>
         </View>
@@ -270,28 +226,6 @@ exports[`SmartList Component Snapshot 1`] = `
                 }
               >
                 3
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={false}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 16,
-                    },
-                    false,
-                    Object {
-                      "fontFamily": "FontAwesome",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                  ]
-                }
-              >
-                
               </Text>
             </View>
           </View>

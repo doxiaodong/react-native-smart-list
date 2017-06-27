@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import SmartList, { Tabs, Pane, store, configStyle } from 'react-native-smart-list'
-// import SmartList, { Tabs, Pane, store, configStyle } from './sm'
+// import SmartList, { Tabs, Pane, store, configStyle } from 'react-native-smart-list'
+import SmartList, { Tabs, Pane, store, configStyle } from './sm'
 import { dataFilters, initFilters } from './data'
 import style from './style'
 
@@ -48,7 +48,12 @@ export default class App extends Component {
         </View>
         <SmartList
           tabs={
-            <Tabs maxLabelLength={2}>
+            <Tabs
+              iosUseModal={true}
+              maxLabelLength={2}
+              labelIcon={(<Icon name="angle-down" size={16} />)}
+              labelIconActive={(<Icon name="angle-up" size={16} />)}
+            >
               {dataFilters.map((t) => {
                 const { label, values } = t
                 const selected = this.state.filters[t.label] || {}

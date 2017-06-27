@@ -30,14 +30,9 @@ export default StyleSheet.create({
   text: {
     paddingRight: 5
   },
-  icon: {},
   activeText: {
     color: 'red'
   },
-  activeIcon: {
-    color: 'red'
-  },
-
   tabContentContainer: {
     top: 1,
     width: '100%',

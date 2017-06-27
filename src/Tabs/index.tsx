@@ -5,7 +5,6 @@ import {
   Platform,
   TouchableOpacity
 } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import store from '../store'
 import AndroidPaneContainer from './AndroidPaneContainer'
 import IOSPaneContainer from './IOSPaneContainer'
@@ -16,8 +15,16 @@ import defaultStyle from './style'
 const isIOS = Platform.OS === 'ios'
 
 export default class Tabs extends Component<{
+  labelIcon: React.ReactElement<any>
+  labelIconActive: React.ReactElement<any>
   maxLabelLength?: number
+  iosUseModal?: boolean
 }, {}> {
+
+  static defaultProps = {
+    maxLabelLength: 4,
+    iosUseModal: false
+  }
 
   state = {
     currentName: null
@@ -60,9 +67,6 @@ export default class Tabs extends Component<{
   }
 
   shadowLabel(label, max) {
-    if (!max) {
-      max = 4
-    }
     if (label.length > max) {
       return label.slice(0, max) + '...'
     }
@@ -70,7 +74,7 @@ export default class Tabs extends Component<{
   }
 
   tabsLayout = (style) => {
-    const { children, maxLabelLength } = this.props
+    const { children, maxLabelLength, labelIcon, labelIconActive } = this.props
     return (
       <View style={style.tabs}>
         {
@@ -88,11 +92,7 @@ export default class Tabs extends Component<{
                     <Text style={[style.text, isActive && style.activeText]}>
                       {this.shadowLabel(selectedLabel || label, maxLabelLength)}
                     </Text>
-                    <Icon
-                      name={isActive ? 'angle-up' : 'angle-down'}
-                      style={isActive && style.activeIcon}
-                      size={16}
-                    />
+                    {isActive ? labelIconActive : labelIcon}
                   </View>
                 </TouchableOpacity>
               </View>
@@ -104,7 +104,7 @@ export default class Tabs extends Component<{
   }
 
   render() {
-    const { children } = this.props
+    const { children, iosUseModal } = this.props
     const style = { ...defaultStyle, ...globalStyle.tabs }
 
     const containerChildren = React.Children.map(children, (item) => {
@@ -125,7 +125,7 @@ export default class Tabs extends Component<{
       <View style={style.container}>
         {this.tabsLayout(style)}
         {
-          isIOS ?
+          (isIOS && !iosUseModal) ?
             <IOSPaneContainer>{containerChildren}</IOSPaneContainer> :
             <AndroidPaneContainer
               visible={this.isSomeoneActive()}
